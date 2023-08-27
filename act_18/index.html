@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Random Square</title>
+    <style>
+      #canvas {
+        outline: solid;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      const BODY_COLOR = "#292d36";
+      const LIP_COLOR = "#323742";
+      const NOSE_COLOR = "#0a0b0d";
+      const EYE_IRIS_COLOR = "#27292e";
+      const TONGUE_COLOR = "#e8486b";
+
+      var img = new Image();
+      img.src = "matrix.webp";
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 500, 500); // Draw the image at coordinates (0, 0)
+
+        // Body
+        ctx.beginPath();
+        ctx.arc(250, 400, 150, 0, 2 * Math.PI);
+        ctx.fillStyle = BODY_COLOR;
+        ctx.fill();
+        ctx.closePath();
+
+        // Head
+        ctx.beginPath();
+        ctx.arc(250, 250, 150, 0, 2 * Math.PI);
+        ctx.fillStyle = BODY_COLOR;
+        ctx.fill();
+        ctx.strokeStyle = "#1b1e24";
+        ctx.stroke();
+        ctx.closePath();
+
+        // Left eye
+        ctx.beginPath();
+        ctx.arc(180, 230, 45, 0, 2 * Math.PI);
+        ctx.fillStyle = "#d8dbe3";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(180, 240, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "#915b34";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(180, 240, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        // Right eye
+        ctx.beginPath();
+        ctx.arc(320, 230, 45, 0, 2 * Math.PI);
+        ctx.fillStyle = "#d8dbe3";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(320, 240, 30, 0, 2 * Math.PI);
+        ctx.fillStyle = "#915b34";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(320, 240, 20, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        // Left ear
+        ctx.beginPath();
+        ctx.ellipse(160, 140, 80, 35, Math.PI * -0.15, 0, 2 * Math.PI);
+        ctx.fillStyle = LIP_COLOR;
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        // Rigth ear
+        ctx.beginPath();
+        ctx.ellipse(340, 140, 80, 35, Math.PI * 0.15, 0, 2 * Math.PI);
+        ctx.fillStyle = LIP_COLOR;
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        // Tongue
+        ctx.beginPath();
+        ctx.ellipse(250, 340, 50, 50, 0, 0, Math.PI);
+        ctx.fillStyle = TONGUE_COLOR;
+        ctx.fill();
+        ctx.closePath();
+
+        // Left lip
+        ctx.beginPath();
+        ctx.ellipse(175, 325, 80, 50, -10, 0, 2 * Math.PI);
+        ctx.fillStyle = LIP_COLOR;
+        ctx.fill();
+        ctx.closePath();
+
+        // Right lip
+        ctx.beginPath();
+        ctx.ellipse(325, 325, 80, 50, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = LIP_COLOR;
+        ctx.fill();
+        ctx.closePath();
+
+        // Nose
+        ctx.beginPath();
+        ctx.arc(250, 270, 35, 0, 2 * Math.PI);
+        ctx.fillStyle = NOSE_COLOR;
+        ctx.fill();
+        ctx.closePath();
+      };
+    </script>
+  </body>
+</html>
