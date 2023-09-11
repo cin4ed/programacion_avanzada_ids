@@ -15,7 +15,8 @@
       <button @click="count++">Count: <span>{{ count }}</span></button>
       <hr />
       Number a: <input type="text" v-model="a" /> Number b:
-      <input type="text" v-model="b" /> Result: <span>{{ a + b + 0 }}</span>
+      <input type="text" v-model="b" /> Result:
+      <span>{{ sum() }}</span>
     </div>
 
     <script>
@@ -29,6 +30,11 @@
             a: 5,
             b: 10,
           };
+        },
+        methods: {
+          sum() {
+            return parseInt(this.a) + parseInt(this.b);
+          },
         },
       }).mount("#app");
     </script>
