@@ -18,9 +18,12 @@
       <input type="text" v-model="b" /> Result:
       <span>{{ sum() }}</span>
       <hr />
-      <input v-model="person" type="text" />
-      <button @click="addName">Add</button>
-      <li v-for="person in people">{{ person }}</li>
+      <input v-model="nombre" type="text" />
+      <input v-model="lastname" type="text" />
+      <button @click="addPerson">Add</button>
+      <li v-for="person in people">
+        {{ person.name }} - {{ person.lastname }}
+      </li>
     </div>
 
     <script>
@@ -33,17 +36,23 @@
             name: "Kenneth",
             a: 5,
             b: 10,
-            people: ["Kenneth", "Alice", "John"],
-            person: "",
+            people: [
+              { name: "Kenneth", lastname: "Quintero" },
+              { name: "Victor", lastname: "Martin" },
+              { name: "Jorge", lastname: "Barajas" },
+            ],
+            nombre: "",
+            apellido: "",
           };
         },
         methods: {
           sum() {
             return parseInt(this.a) + parseInt(this.b);
           },
-          addName(e) {
-            this.people.push(this.person);
-            this.person = "";
+          addPerson(e) {
+            this.people.push({ name: this.nombre, lastname: this.lastname });
+            this.nombre = "";
+            this.lastname = "";
           },
         },
       }).mount("#app");
