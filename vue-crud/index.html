@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.id }}</td>
+
+            <td v-if="!user.onEdition">{{ user.name }}</td>
+            <td v-if="user.onEdition"><input type="text" name="name" v-model="user.name"></td>
+
+            <td v-if="!user.onEdition">{{ user.username }}</td>
+            <td v-if="user.onEdition"><input type="text" name="username" v-model="user.username"></td>
+
+            <td v-if="!user.onEdition">{{ user.email }}</td>
+            <td v-if="user.onEdition"><input type="email" name="email" v-model="user.email"></td>
+
+            <td v-if="!user.onEdition">{{ user.phone }}</td>
+            <td v-if="user.onEdition"><input type="text" name="phone" v-model="user.phone"></td>
+
+            <td v-if="!user.onEdition">{{ user.website }}</td>
+            <td v-if="user.onEdition"><input type="text" name="website" v-model="user.website"></td>
+
+            <td v-if="!user.onEdition">
+              <button type="button" @click="editUser($event, user.id)">Edit</button>
+              <button type="button" @click="removeUser($event, user.id)">Remove</button>
+            </td>
+            <td v-if="user.onEdition">
+              <button type="button" @click="saveUser($event, user.id)">Save</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script type="module">
+      import data from "./users.json" assert { type: "json" };
+      import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+
+      createApp({
+        data() {
+          return {
+            users: data.map(user => ({ ...user, onEdition: false })),
+          };
+        },
+        methods: {
+          removeUser(e, id) {
+            this.users = this.users.filter(user => user.id != id);
+            console.log(`User with id: ${id}, has been removed.`);
+          },
+          editUser(e, id) {
+            this.users = this.users.map(user => {
+              if (user.id == id) return {...user, onEdition: true};
+              return {...user, onEdition: false};
+            }); 
+          },
+          saveUser(e, id) {
+            this.users = this.users.map(user => {
+              if (user.id == id) return {...user, onEdition: false};
+              return {...user, onEdition: false};
+            });
+          }
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
